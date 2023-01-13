@@ -1,6 +1,27 @@
-// Import stylesheets
 import './style.css';
 
-// Write Javascript code!
-const appDiv = document.getElementById('app');
-appDiv.innerHTML = `<h1>JS Starter</h1>`;
+const Singleton = (function () {
+  let instance;
+
+  function createInstance() {
+    return new Object('I am the instance');
+  }
+
+  return {
+    getInstance: function () {
+      if (!instance) {
+        instance = createInstance();
+      }
+      return instance;
+    },
+  };
+})();
+
+function isSameInstance() {
+  const instance1 = Singleton.getInstance();
+  const instance2 = Singleton.getInstance();
+
+  console.log('Same instance? ' + (instance1 === instance2));
+}
+
+isSameInstance();
